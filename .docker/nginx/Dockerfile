@@ -5,7 +5,13 @@ RUN apk add --no-cache g++ openssl
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
 
+EXPOSE 9503
+
+STOPSIGNAL SIGQUIT
+
 CMD ["nginx"]
+
+#CMD ["nginx"]
 
 #FROM alpine:3.6
 

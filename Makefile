@@ -15,7 +15,7 @@ install-lite: build start
 
 .PHONY: start
 start: ##up-services ## spin up environment docker-compose up -d
-	docker-compose up --build
+	docker-compose up --build -d
 
 .PHONY: stop
 stop: ## stop environment
