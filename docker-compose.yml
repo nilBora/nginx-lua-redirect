@@ -3,10 +3,10 @@ version: "3.7"
 services:
   app_nginx:
     container_name: redirect_nginx
-    image: fabiocicerchia/nginx-lua:latest
-#    build:
-#      context: .docker/nginx
-#      dockerfile: Dockerfile
+    #image: fabiocicerchia/nginx-lua:latest
+    build:
+      context: .docker/nginx
+      dockerfile: Dockerfile
     networks:
       - redirect-backend
     working_dir: /app
