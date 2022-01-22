@@ -1,5 +1,8 @@
 local redis = require "resty.redis"
 local red = redis:new()
+local arg = ngx.var.uri
+
+local uri, _ = arg:gsub("/", "")
 
 red:set_timeout(1000)
 
@@ -10,11 +13,13 @@ if not ok then
     ngx.say(err)
     --ngx.exec(path)
 end
-red:set("ping", "PONG!")
-res, err = red:get("ping");
 
-ngx.say(res)
+res, err = red:get("redirect:" .. uri);
+if res == ngx.null then
+    ngx.say("Not Found")
+    --ngx.exec(path) -- если данных нет, то сделаем редирект
+else
+    ngx.say("FOUND!")
+   -- ngx.exec(res)
+end
 
-ngx.say("Url: ")
-local arg = ngx.var.uri
-ngx.say(arg)
