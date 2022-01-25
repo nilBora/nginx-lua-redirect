@@ -19,7 +19,6 @@ if res == ngx.null then
     ngx.say("Not Found")
     --ngx.exec(path) -- если данных нет, то сделаем редирект
 else
-    ngx.say("FOUND!")
-   -- ngx.exec(res)
+    ngx.exec(res)
 end
 

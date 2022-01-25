@@ -22,6 +22,26 @@ services:
       timeout: 3s
       retries: 3
 
+  php:
+    container_name: ${APP_COMPOSE_PROJECT_NAME}_php_fpm
+    build:
+      context: ./.docker/php${PHP_VER}-dev-fpm
+      args:
+        PHP_VER: ${PHP_VER}
+    networks:
+      - redirect-backend
+    env_file:
+      - .env
+    user: 1000:1000
+    ports:
+      - "9005:9003"
+    environment:
+      PHP_IDE_CONFIG: serverName=docker
+    volumes:
+      - ~/.composer/cache/:/.composer_cache/:rw
+      - ./:/app:rw
+    working_dir: /app
+
 networks:
   redirect-backend:
     name: redirect-backend
