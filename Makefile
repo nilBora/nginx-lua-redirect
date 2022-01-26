@@ -42,7 +42,6 @@ erase: stop-all remove shared-service-erase docker-remove-volumes ## stop and de
 
 .PHONY: build
 build: ## build environment and initialize composer and project dependencies
-	docker build .docker/go/ -t docker-gs-ping
 	docker-compose build --pull
 
 .PHONY: setup
