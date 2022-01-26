@@ -13,6 +13,8 @@ services:
     volumes:
       - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./:/app
+    depends_on:
+      - redirect_php
     ports:
       - 9503:80
       - 8080:8080
@@ -22,7 +24,7 @@ services:
       timeout: 3s
       retries: 3
 
-  php:
+  redirect_php:
     container_name: ${APP_COMPOSE_PROJECT_NAME}_php_fpm
     build:
       context: ./.docker/php${PHP_VER}-dev-fpm
@@ -39,6 +41,7 @@ services:
       PHP_IDE_CONFIG: serverName=docker
     volumes:
       - ~/.composer/cache/:/.composer_cache/:rw
+      - ./.docker/php7.4-fpm-dev/conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./:/app:rw
     working_dir: /app
 
