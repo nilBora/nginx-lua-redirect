@@ -7,4 +7,8 @@ EXPOSE 9503
 
 STOPSIGNAL SIGQUIT
 
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
 CMD ["nginx"]
