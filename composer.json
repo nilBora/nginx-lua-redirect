@@ -1,0 +1,18 @@
+{
+    "name": "nil/nginx-lua-redirect",
+    "description": "redirect via nginx lua and php",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nil Borodulia",
+            "email": "nil.borodulia@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Jtrw\\Redirect\\": "src/Redirect",
+        },
+    }
+}
