@@ -2,6 +2,7 @@
             local redis_port = os.getenv("APP_REDIS_PORT")
 
             local redis = require "resty.redis"
+            --ngx.say(_VERSION)
             --local cjson = require("cjson")
             --local json = require("json")
 
