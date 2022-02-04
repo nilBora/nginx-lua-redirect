@@ -3,7 +3,7 @@
 
             local redis = require "resty.redis"
             --ngx.say(_VERSION)
-            --local cjson = require("cjson")
+            local cjson = require("cjson")
             --local json = require("json")
 
             local red = redis:new()

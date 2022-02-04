@@ -1,4 +1,8 @@
-FROM fabiocicerchia/nginx-lua:latest
+#FROM fabiocicerchia/nginx-lua:latest
+FROM fabiocicerchia/nginx-lua:1-alpine-compat
+
+RUN apk add gcc musl-dev coreutils \
+    && luarocks install lua-cjson
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
