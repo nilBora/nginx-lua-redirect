@@ -2,8 +2,9 @@
             local redis_port = os.getenv("APP_REDIS_PORT")
 
             local redis = require "resty.redis"
-            --ngx.say(_VERSION)
             local cjson = require("cjson")
+            --ngx.say(_VERSION)
+
             --local json = require("json")
 
             local red = redis:new()
@@ -25,7 +26,8 @@
                 local res = ngx.location.capture ("/index.php", {args = {uri = ngx.var.uri, args = ngx.var.args}})
                 ngx.say(res.body)
             else
-                local values = { 'value1', 'value2', 'value3' }
-                red:rpush('visits', ngx.var.uri)
+                local values = {ngx.var.uri, ngx.var.args, ngx.var.server_addr}
+                local jsonData = cjson.encode(values)
+                red:set('visits', jsonData)
                 ngx.say(res)
             end

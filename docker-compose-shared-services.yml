@@ -40,5 +40,5 @@ networks:
     driver: bridge
 
 volumes:
-  #postgres_db:
+  postgres_db:
   redis_db:
