@@ -28,6 +28,6 @@
             else
                 local values = {ngx.var.uri, ngx.var.args, ngx.var.server_addr}
                 local jsonData = cjson.encode(values)
-                red:set('visits', jsonData)
+                red:rpush('redirect-visits', jsonData)
                 ngx.say(res)
             end
