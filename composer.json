@@ -9,10 +9,12 @@
             "email": "nil.borodulia@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "jtrw/dao": "^2.0"
+    },
     "autoload": {
         "psr-4": {
-            "Jtrw\\Redirect\\": "src/Redirect",
-        },
+            "Jtrw\\Redirect\\": "src"
+        }
     }
 }
