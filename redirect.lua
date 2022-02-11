@@ -3,9 +3,6 @@
 
             local redis = require "resty.redis"
             local cjson = require("cjson")
-            --ngx.say(_VERSION)
-
-            --local json = require("json")
 
             local red = redis:new()
             local arg = ngx.var.uri
@@ -26,8 +23,9 @@
                 local res = ngx.location.capture ("/index.php", {args = {uri = ngx.var.uri, args = ngx.var.args}})
                 ngx.say(res.body)
             else
-                local values = {ngx.var.uri, ngx.var.args, ngx.var.server_addr}
+                local values = {ngx.var.uri, ngx.var.args, ngx.var.server_addr, ngx.var.remote_addr}
                 local jsonData = cjson.encode(values)
                 red:rpush('redirect-visits', jsonData)
-                ngx.say(res)
+                --ngx.say(res)--
+                ngx.redirect(res)
             end
