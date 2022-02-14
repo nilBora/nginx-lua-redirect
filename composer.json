@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "ext-pdo": "*",
         "jtrw/dao": "^2.0"
     },
     "autoload": {
