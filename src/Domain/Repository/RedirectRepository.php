@@ -1,9 +1,7 @@
 <?php
 namespace Jtrw\Redirect\Domain\Repository;
 
-use Jtrw\DAO\DataAccessObject;
 use Jtrw\DAO\DataAccessObjectInterface;
-use Jtrw\DAO\ObjectPDOAdapter;
 
 class RedirectRepository
 {
@@ -22,7 +20,7 @@ class RedirectRepository
         $search = [
             'code' => $code
         ];
-        $result =  $this->dataAccessObject->select($sql, $search, [], ObjectPDOAdapter::FETCH_ROW);
+        $result =  $this->dataAccessObject->select($sql, $search, [], DataAccessObjectInterface::FETCH_ROW)->toNative();
         
         return $result['link'];
     }

@@ -8,8 +8,8 @@ $CONFIG['db']['user'] = '%user%';
 $CONFIG['db']['password'] = '%password';
 $CONFIG['db']['dsn'] = "pgsql:dbname={$CONFIG['db']['dbname']};port=5432;host={$CONFIG['db']['host']}";
 
-if (file_exists(__DIR__."local.php")) {
-    require_once __DIR__."local.php";
+if (file_exists(__DIR__."/local.php")) {
+    require_once __DIR__."/local.php";
 }
 
 $dataAccessObject = DataAccessObject::factory(new PDO(
