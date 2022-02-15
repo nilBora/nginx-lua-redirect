@@ -1,6 +1,8 @@
 <?php
 require "./../vendor/autoload.php";
 use Jtrw\DAO\DataAccessObject;
+use Jtrw\Redirect\Domain\Service\Redirect;
+use Jtrw\Redirect\Domain\Repository\RedirectRepository;
 
 $CONFIG['db']['dbname'] = '%dbname%';
 $CONFIG['db']['host'] = 'localhost';
@@ -12,14 +14,19 @@ if (file_exists(__DIR__."/local.php")) {
     require_once __DIR__."/local.php";
 }
 
-$dataAccessObject = DataAccessObject::factory(new PDO(
-    $CONFIG['db']['dsn'],
-    $CONFIG['db']['user'],
-    $CONFIG['db']['password']
-));
-$rep = new \Jtrw\Redirect\Domain\Repository\RedirectRepository($dataAccessObject);
 
-$rep->get('x1');
+$service = new Redirect(new RedirectRepository(
+    DataAccessObject::factory(new PDO(
+        $CONFIG['db']['dsn'],
+        $CONFIG['db']['user'],
+        $CONFIG['db']['password']
+    ))
+));
+$url = str_replace("/", "", $_SERVER['REQUEST_URI']);
+
+echo $service->doRedirect($url);
+
+
 //Redirect logic
-echo $_SERVER['REQUEST_URI'];
-echo "PONG";
+//echo $_SERVER['REQUEST_URI'];
+//echo "PONG";
