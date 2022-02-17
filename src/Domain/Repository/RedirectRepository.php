@@ -22,6 +22,6 @@ class RedirectRepository
         ];
         $result =  $this->dataAccessObject->select($sql, $search, [], DataAccessObjectInterface::FETCH_ROW)->toNative();
         
-        return $result['link'];
+        return $result['link'] ?? null;
     }
 }
