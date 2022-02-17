@@ -11,7 +11,7 @@
     ],
     "require": {
         "ext-pdo": "*",
-        "jtrw/dao": "^2.0"
+        "jtrw/dao": "^3.0"
     },
     "autoload": {
         "psr-4": {

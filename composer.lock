@@ -4,23 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "97212f203ce651611cda8731d358fc90",
+    "content-hash": "4e5fe756396a9edb74fd8551ba6f0c06",
     "packages": [
         {
             "name": "jtrw/dao",
-            "version": "2.0.2",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtrw/dao.git",
-                "reference": "b82ce12826a2cfb4a80e9557ac7b772fb82c7cee"
+                "reference": "c54280a1354e8f5cbbb45f85a43124f5faf6b694"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtrw/dao/zipball/b82ce12826a2cfb4a80e9557ac7b772fb82c7cee",
-                "reference": "b82ce12826a2cfb4a80e9557ac7b772fb82c7cee",
+                "url": "https://api.github.com/repos/jtrw/dao/zipball/c54280a1354e8f5cbbb45f85a43124f5faf6b694",
+                "reference": "c54280a1354e8f5cbbb45f85a43124f5faf6b694",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
+                "ext-pdo": "*",
                 "php": ">=7.4"
             },
             "require-dev": {
@@ -56,9 +58,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jtrw/dao/issues",
-                "source": "https://github.com/jtrw/dao/tree/2.0.2"
+                "source": "https://github.com/jtrw/dao/tree/3.0.1"
             },
-            "time": "2021-09-20T12:18:09+00:00"
+            "time": "2022-02-15T08:40:13+00:00"
         }
     ],
     "packages-dev": [],
@@ -67,7 +69,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-pdo": "*"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
 }
