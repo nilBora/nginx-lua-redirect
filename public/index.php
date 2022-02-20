@@ -14,17 +14,21 @@ if (file_exists(__DIR__."/local.php")) {
     require_once __DIR__."/local.php";
 }
 
+try {
+    $service = new Redirect(new RedirectRepository(
+        DataAccessObject::factory(new PDO(
+            $CONFIG['db']['dsn'],
+            $CONFIG['db']['user'],
+            $CONFIG['db']['password']
+        ))
+    ));
+    $url = str_replace("/", "", $_SERVER['REQUEST_URI']);
+    
+    $service->doRedirect($url);
+} catch (Exception $exp) {
+    //..
+}
 
-$service = new Redirect(new RedirectRepository(
-    DataAccessObject::factory(new PDO(
-        $CONFIG['db']['dsn'],
-        $CONFIG['db']['user'],
-        $CONFIG['db']['password']
-    ))
-));
-$url = str_replace("/", "", $_SERVER['REQUEST_URI']);
-
-echo $service->doRedirect($url);
 
 
 //Redirect logic
