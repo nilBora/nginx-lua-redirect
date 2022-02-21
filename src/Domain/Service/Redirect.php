@@ -2,15 +2,18 @@
 
 namespace Jtrw\Redirect\Domain\Service;
 
-use Jtrw\DAO\DataAccessObjectInterface;
+
 use Jtrw\Redirect\Domain\Repository\RedirectRepository;
+use Psr\SimpleCache\CacheInterface;
 
 class Redirect
 {
     protected RedirectRepository $redirectRepository;
+    protected CacheInterface $cache;
     
-    public function __construct(RedirectRepository $redirectRepository)
+    public function __construct(CacheInterface $cache, RedirectRepository $redirectRepository)
     {
+        $this->cache = $cache;
         $this->redirectRepository = $redirectRepository;
     }
     
@@ -18,8 +21,10 @@ class Redirect
     {
         $redirectLink = $this->redirectRepository->get($code);
         if (!$redirectLink) {
-            throw new \Exception("Code not found");
+            $this->redirect('/');
         }
+        
+        $this->addToCache($code, $redirectLink);
         
         $this->addStatistics();
         
@@ -31,6 +36,11 @@ class Redirect
         header("HTTP/1.1 301 Moved Permanently");
         header("Location: ".$redirectLink);
         exit();
+    }
+    
+    protected function addToCache(string $code, string $redirectLink)
+    {
+        $this->cache->set('redirect:'.$code, $redirectLink);
     }
     
     protected function addStatistics()
